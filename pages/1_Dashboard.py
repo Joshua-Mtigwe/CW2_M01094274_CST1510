@@ -1,5 +1,5 @@
-import streamlit as st
-import pandas as pd
+import streamlit as st, pandas as pd
+
 from app_model.cyber_incidents import get_all_cyber_incidents
 from app_model.db import get_connection
 
