@@ -1,4 +1,4 @@
-import streamlit as st, pandas as pd
+import streamlit as st, pandas as pd, time
 
 from app_model.cyber_incidents import get_all_cyber_incidents
 from app_model.db import get_connection
@@ -7,6 +7,9 @@ st.set_page_config(page_title="Home", page_icon="🏡", layout="wide")
 
 if 'logged_in' not in st.session_state:
     st.warning("Please sign in to access the dashboard.")
+    with st.spinner("Teleporting you to Home page...🚀"):
+        time.sleep(2)
+        st.switch_page("Home.py")
     st.stop()
 else:
     st.success("Successfully Signed In!")
