@@ -24,7 +24,6 @@ def get_all_users(conn):
     sql = '''SELECT * FROM users'''
     conn.execute(sql)
     users  = cur.fetchall()
-    conn.close()
     return (users)
 
 def get_user(conn, name):
