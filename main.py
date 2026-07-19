@@ -4,6 +4,7 @@ from app_model.hashing import hash_generation, is_hash_valid
 from app_model.db import conn
 from app_model.users import add_user, get_user
 from app_model.schema import create_user_table
+from Home import twofa_secret
 
 #User registration
 def register_user(conn):
@@ -16,7 +17,7 @@ def register_user(conn):
 def login_user(conn):
     name = input("Please enter your username: >  ")
     password = input("Please enter your password: > ")
-    id, user_name, user_hash = get_user(conn, name)
+    id, user_name, user_hash, twofa_secret = get_user(conn, name)
     print(f"Welcome {user_name}!!")
     if name == user_name and is_hash_valid(password, user_hash):
         print("Logged in successfully")
