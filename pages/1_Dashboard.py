@@ -2,6 +2,9 @@ import streamlit as st, pandas as pd, time, plotly.express as px
 
 from app_model.cyber_incidents import get_all_cyber_incidents
 from app_model.db import get_connection
+from app_model.sidebar import sidebar
+
+sidebar()
 
 #I am configuring the page layout to wide mode so our charts and dataframes have plenty of horizontal space.
 st.set_page_config(page_title="Home", page_icon="🏡", layout="wide")
@@ -16,7 +19,9 @@ if "logged_in" not in st.session_state:
 else:
     st.success("Successfully Signed In!")
 
-st.title("Welcome to the Cyber Incidents Dashboard🛡️")
+username = st.session_state.get("username")
+
+st.sidebar.write(f"👋😁Welcome, **{username}** ")
 
 #Fetching our core dataset directly from the active database connection.
 conn = get_connection()
@@ -26,6 +31,9 @@ data = get_all_cyber_incidents(conn)
 with st.sidebar:
     st.header("Navigation")
     severity_ = st.selectbox("Severity Level", data["severity"].unique())
+
+    st.sidebar.container(height=200, border=False)
+
 
 #Standardizing timestamps to datetime objects so our grouping calculations don't break.
 data["timestamp"] = pd.to_datetime(data["timestamp"])

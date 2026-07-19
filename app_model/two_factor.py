@@ -2,8 +2,6 @@ import pyotp
 import qrcode
 import io
 
-
-
 def generate_secret():
     return pyotp.random_base32()
 

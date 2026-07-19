@@ -1,11 +1,13 @@
 import streamlit as st
 from groq import Groq
+from app_model.sidebar import sidebar
+
+sidebar()
 
 #I am setting up a centered window layout to create a clean, tightly focused chat interface for our users.
 st.set_page_config(page_title="CSDF AI", page_icon="🛡️", layout="centered")
 
-#I am initializing the cloud inference engine using secrets to protect our API keys from exposure.
-client = Groq(api_key="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")
+client = Groq(api_key="add-your-api-key here")
 
 SYSTEM_PROMPT = """
 You are CSDF AI, a cybersecurity assistant.
@@ -45,9 +47,9 @@ with st.sidebar:
         """
         A Cybersecurity assistant focused on:
         
-        • Threat analysis
-        • Security concepts
-        • Incident response
+        • Threat analysis\n
+        • Security concepts\n
+        • Incident response\n
         • Defensive practices
         """
     )

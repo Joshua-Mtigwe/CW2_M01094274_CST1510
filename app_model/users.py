@@ -1,12 +1,12 @@
 #add user
-def add_user(conn, username, hash, twofa_secret):
+def add_user(conn, username, hash, twofa_secret, role, status):
     cursor = conn.cursor()
     cursor.execute(
         """
-        INSERT INTO users (username, password_hash, twofa_secret)
-        VALUES (?, ?, ?)
+        INSERT INTO users (username, password_hash, twofa_secret, role, status)
+        VALUES (?, ?, ?, ?, ?)
         """,
-        (username, hash, twofa_secret)
+        (username, hash, twofa_secret, role, status)
     )
     conn.commit()
 
@@ -32,7 +32,7 @@ def get_all_users(conn):
 
 def get_user(conn, name):
     cur = conn.cursor()
-    sql = '''SELECT id, username, password_hash, twofa_secret FROM users WHERE username = ?'''
+    sql = '''SELECT id, username, password_hash, twofa_secret, role, status FROM users WHERE username = ?'''
     param = (name,)
     cur.execute(sql, param)
     user  = cur.fetchone()
