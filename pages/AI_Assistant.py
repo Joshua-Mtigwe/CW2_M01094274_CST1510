@@ -7,7 +7,7 @@ sidebar()
 #I am setting up a centered window layout to create a clean, tightly focused chat interface for our users.
 st.set_page_config(page_title="CSDF AI", page_icon="🛡️", layout="centered")
 
-client = Groq(api_key="add-your-api-key here")
+client = Groq(api_key="add-your-API-Key-here")
 
 SYSTEM_PROMPT = """
 You are CSDF AI, a cybersecurity assistant.
